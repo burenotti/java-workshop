@@ -1,36 +1,36 @@
 package ru.mirea.workshop.ws3.movable;
 
 public class MovableCircle implements Movable {
-    private final MovablePoint point;
+    private final MovablePoint center;
     private int radius;
 
     public MovableCircle(int x, int y, int xSpeed, int ySpeed, int radius) {
-        this.point = new MovablePoint(x, y, xSpeed, ySpeed);
+        this.center = new MovablePoint(x, y, xSpeed, ySpeed);
         this.radius = radius;
     }
 
     @Override
     public void moveUp() {
-        point.moveUp();
+        center.moveUp();
     }
 
     @Override
     public void moveDown() {
-        point.moveDown();
+        center.moveDown();
     }
 
     @Override
     public void moveLeft() {
-        point.moveLeft();
+        center.moveLeft();
     }
 
     @Override
     public void moveRight() {
-        point.moveRight();
+        center.moveRight();
     }
 
     @Override
     public String toString() {
-        return String.format("Circle R=%d C=(%d, %d)", radius, point.getX(), point.getY());
+        return String.format("Circle R=%d C=(%d, %d)", radius, center.getX(), center.getY());
     }
 }
