@@ -20,23 +20,52 @@ public class Counter extends JFrame {
     }
 
     private void mount() {
-        setSize(200, 200);
+        setSize(400, 150);
+        setResizable(false);
         milanButton = new JButton(state.getTeamLeftName());
         realButton = new JButton(state.getTeamRightName());
-        scoreLabel = new JLabel();
-        resultLabel = new JLabel();
-        lastScorer = new JLabel();
+        scoreLabel = new JLabel("", SwingConstants.CENTER);
+        resultLabel = new JLabel("", SwingConstants.CENTER);
+        lastScorer = new JLabel("", SwingConstants.CENTER);
 
         milanButton.addActionListener(this::onIncrementMilan);
         realButton.addActionListener(this::onIncrementReal);
 
-        setLayout(new FlowLayout());
+        setLayout(new GridBagLayout());
 
-        add(scoreLabel);
-        add(milanButton);
-        add(realButton);
-        add(lastScorer);
-        add(resultLabel);
+        {
+            var constraints = new GridBagConstraints();
+//            constraints.weightx = 1;
+            constraints.gridy = 0;
+            constraints.fill = GridBagConstraints.HORIZONTAL;
+            add(scoreLabel, constraints);
+        }
+        {
+            var constraints = new GridBagConstraints();
+            constraints.weightx = 0.5;
+            constraints.gridy = 1;
+            add(milanButton, constraints);
+        }
+        {
+            var constraints = new GridBagConstraints();
+            constraints.weightx = 0.5;
+            constraints.gridy = 1;
+            add(realButton, constraints);
+        }
+        {
+
+            var constraints = new GridBagConstraints();
+            constraints.weightx = 0.5;
+            constraints.gridy = 3;
+            add(lastScorer, constraints);
+        }
+        {
+            var constraints = new GridBagConstraints();
+            constraints.weightx = 0.5;
+            constraints.gridy = 3;
+            add(resultLabel, constraints);
+        }
+
 
         setVisible(true);
         update();
