@@ -1,5 +1,9 @@
 package ru.mirea.workshop.ws5;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 public class ABPrinter {
 
     public static void printRange(int from, int to) {
@@ -59,6 +63,26 @@ public class ABPrinter {
         return isPrime(n, 2);
     }
 
+    public static int countMaxInSequence(Scanner scanner, Map<Integer, Integer> count, int max) {
+        var value = scanner.nextInt();
+        if (value == 0) {
+            return count.getOrDefault(max, 0);
+        }
+        count.put(value, count.getOrDefault(value, 0) + 1);
+        if (value > max) {
+            return countMaxInSequence(scanner, count, value);
+        } else {
+            return countMaxInSequence(scanner, count, max);
+        }
+    }
+
+
+    public static int countMaxInSequence() {
+        var scanner = new Scanner(System.in);
+
+        return countMaxInSequence(scanner, new HashMap<>(), Integer.MIN_VALUE);
+    }
+
     public static void main(String[] args) {
         printRange(0, 10);
         System.out.println();
@@ -81,5 +105,7 @@ public class ABPrinter {
         System.out.println(isPrime(129));
         System.out.println(isPrime(3));
         System.out.println(isPrime(17));
+
+        System.out.println(countMaxInSequence());
     }
 }
